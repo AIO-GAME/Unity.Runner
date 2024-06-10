@@ -2,7 +2,7 @@
   "name": "com.aio.runner",
   "displayName": "AIO Unity Runner",
   "description": "AIO Unity Runner is a Unity package that provides a simple and efficient timer system for Unity.",
-  "version": "1.0.0-preview",
+  "version": "1.0.0",
   "unity": "2019.4",
   "category": "Runtime",
   "unityRelease": "0f1",
@@ -25,5 +25,6 @@
     "name": "AIO GAME",
     "url": "https://github.com/AIO-GAME/Unity.Runner"
   },
-  "type": "library"
+  "type": "module"
+}brary"
 }
