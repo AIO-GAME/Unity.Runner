@@ -100,14 +100,16 @@ def read_local_email() -> str:
 
 
 def read_current_version() -> str | None:
-    subprocess.run(['git', 'fetch', '--tags'], check=True)
-    tags = os.popen("git tag").read().split("\n")
-    # 需要判断是否有标签列表
-    if len(tags) == 0:
+    try:
+        subprocess.run(['git', 'fetch', '--tags'], check=True)
+        tags = os.popen("git tag").read().split("\n")
+        if len(tags) == 0:  # 需要判断是否有标签列表
+            return None
+        # 所有标签去掉空字符串 -preview标签去掉preview 然后按照version排序 1.2.3-preview -> 1.3.0-preview
+        tags = sorted([tag.replace("-preview", "") for tag in tags if tag], key=lambda x: list(map(int, x.split("."))))
+        return tags[-1]
+    except Exception:
         return None
-    # 所有标签去掉空字符串 -preview标签去掉preview 然后按照version排序 1.2.3-preview -> 1.3.0-preview
-    tags = sorted([tag.replace("-preview", "") for tag in tags if tag], key=lambda x: list(map(int, x.split("."))))
-    return tags[-1]
 
 
 # 切换上一级目录
@@ -151,7 +153,7 @@ for step_description, step_function in tqdm(steps, desc="检查标签"):
 
 version = read_current_version()  # 读取当前版本号
 if version is None:
-    version = "1.0.0"
+    version = "1.0.0" + ("-preview" if is_preview else "")
     new_version = "1.0.0"
 else:
     # 递增版本号
