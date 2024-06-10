@@ -1,12 +1,11 @@
-import shutil
-import time
 import json
 import os
+import shutil
 import subprocess
-from typing import Any
+import time
 
-from tqdm import tqdm
 import requests
+from tqdm import tqdm
 
 
 def get_latest_github_tag(repo_url) -> str | None:
@@ -70,7 +69,6 @@ def remove_readonly(func, path, _) -> None:
     func(path)
 
 
-# 删除文件夹
 def delete_folder(folder_path) -> None:
     try:
         if os.path.exists(folder_path):
