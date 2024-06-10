@@ -7,13 +7,13 @@
 <p align="center"><a href="README_EN.md">简体中文</a> | English</p>
 <p align="center">
 <a href="https://github.com/AIO-GAME/Runner/security/policy"> 
-<img alt="" src="https://img.shields.io/github/package-json/unity/AIO-GAME/Runner"> 
+<img alt="" src="https://img.shields.io/github/package-json/unity/AIO-GAME/Unity.Runner"> 
 </a>
 <a href="https://github.com/AIO-Game/Runner">
-<img src="https://img.shields.io/github/license/AIO-Game/Runner" alt=""/>
+<img src="https://img.shields.io/github/license/AIO-Game/Unity.Runner" alt=""/>
 </a>
 <a href="https://github.com/AIO-Game/Runner">
-<img src="https://img.shields.io/github/languages/code-size/AIO-Game/Runner?label=size" alt=""/>
+<img src="https://img.shields.io/github/languages/code-size/AIO-Game/Unity.Runner?label=size" alt=""/>
 </a>
 <a href="https://openupm.com/packages/com.aio.runner/">
 <img src="https://img.shields.io/npm/v/com.aio.runner?label=openupm&amp;registry_uri=https://package.openupm.com" alt=""/>
