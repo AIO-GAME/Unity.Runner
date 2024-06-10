@@ -154,7 +154,7 @@ for step_description, step_function in tqdm(steps, desc="检查标签"):
 version = read_current_version()  # 读取当前版本号
 if version is None:
     version = "1.0.0" + ("-preview" if is_preview else "")
-    new_version = "1.0.0"
+    new_version = "1.0.0" + ("-preview" if is_preview else "")
 else:
     # 递增版本号
     version_list = version.split(".")
@@ -170,7 +170,6 @@ with open("package.json", "r+") as f:
     package = json.load(f)
     current_version = package["version"]
     package["version"] = new_version
-    package["type"] = "module"
     f.seek(0)
     json.dump(package, f, indent=2)
     print("写入配置: 版本号 {0} -> {1}".format(current_version, new_version))
@@ -240,6 +239,14 @@ if len(errorList) > 0:
         print("删除失败: " + error)
 else:
     print("删除成功")
+
+# 写入新版本号
+with open("package.json", "r+") as f:
+    package = json.load(f)
+    package["type"] = "module"
+    f.seek(0)
+    json.dump(package, f, indent=2)
+    f.close()
 
 steps = [
     ("删除标签", lambda: delete_remote_tag()),

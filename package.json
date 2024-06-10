@@ -25,5 +25,5 @@
     "name": "AIO GAME",
     "url": "https://github.com/AIO-GAME/Unity.Runner"
   },
-  "type": "module"
+  "type": "library"
 }
