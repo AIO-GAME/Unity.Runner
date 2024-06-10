@@ -21,9 +21,9 @@
     "coroutine",
     "task"
   ],
+  "type": "module",
   "author": {
     "name": "AIO GAME",
-    "url": "https://github.com/AIO-GAME/Unity.Runner"
-  },
-  "type": "library"
+    "url": "https://github.com/AIO-GAME"
+  }
 }
