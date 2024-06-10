@@ -108,7 +108,7 @@ Runner.StartCoroutine(mono, T1(), T2());
 Runner.StopCoroutine(Test);
 Runner.StopCoroutine(mono);```
 Runner.StopCoroutine(mono, Test);
-Runner.StopCoroutine(Test());<h4>Task</h4>      
+Runner.StopCoroutine(Test());
 ``` 
 
 <h4>开启协程</h4>
