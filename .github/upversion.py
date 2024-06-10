@@ -89,9 +89,22 @@ def read_current_branch() -> str:  # 判断当前分支
             return branch.replace("* ", "")
 
 
-def read_current_version() -> str:
+def read_local_username() -> str:
+    result = subprocess.run(['git', 'config', 'user.name'], stdout=subprocess.PIPE)
+    return result.stdout.decode('utf-8').strip()
+
+
+def read_local_email() -> str:
+    result = subprocess.run(['git', 'config', 'user.email'], stdout=subprocess.PIPE)
+    return result.stdout.decode('utf-8').strip()
+
+
+def read_current_version() -> str | None:
     subprocess.run(['git', 'fetch', '--tags'], check=True)
     tags = os.popen("git tag").read().split("\n")
+    # 需要判断是否有标签列表
+    if len(tags) == 0:
+        return None
     # 所有标签去掉空字符串 -preview标签去掉preview 然后按照version排序 1.2.3-preview -> 1.3.0-preview
     tags = sorted([tag.replace("-preview", "") for tag in tags if tag], key=lambda x: list(map(int, x.split("."))))
     return tags[-1]
@@ -102,8 +115,8 @@ os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 current_path = os.getcwd()
 print("当前路径: " + current_path)
 
-username = "Star fire"
-email = "xinansky99@gmail.com"
+username = read_local_username()
+email = read_local_email()
 print("用户名称: " + username)
 print("用户邮箱: " + email)
 
@@ -137,14 +150,18 @@ for step_description, step_function in tqdm(steps, desc="检查标签"):
     step_function()
 
 version = read_current_version()  # 读取当前版本号
-print("当前版本号: " + version)
-# 递增版本号
-version_list = version.split(".")
-if is_preview:
-    version_list[2] = str(int(version_list[2]) + 1) + "-preview"
+if version is None:
+    version = "1.0.0"
+    new_version = "1.0.0"
 else:
-    version_list[2] = str(int(version_list[2]) + 1)
-new_version = ".".join(version_list)
+    # 递增版本号
+    version_list = version.split(".")
+    if is_preview:
+        version_list[2] = str(int(version_list[2]) + 1) + "-preview"
+    else:
+        version_list[2] = str(int(version_list[2]) + 1)
+    new_version = ".".join(version_list)
+print("版本号: {0} -> {1}".format(version, new_version))
 
 # 写入新版本号
 with open("package.json", "r+") as f:
