@@ -1,6 +1,8 @@
 {
   "name": "AIO.Unity.Runner",
-  "references": [],
+  "references": [
+    "UniTask"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": true,
