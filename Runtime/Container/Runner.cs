@@ -3,11 +3,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting;
+using Debug = UnityEngine.Debug;
 using UObject = UnityEngine.Object;
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
 using System.Threading;
 using Cysharp.Threading.Tasks;
 #endif
@@ -97,14 +99,14 @@ namespace AIO
             }
 
             if (!instance) throw new Exception("Runner Main Thread Execute instance is null");
-#if SUPPORT_UNITASK
-            GetCancellationTokenOnDestroy = instance.GetCancellationTokenOnDestroy();
-#endif
             EditorApplication.quitting += Dispose;
             Application.quitting       += Dispose;
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
+            GetCancellationTokenOnDestroy = instance.GetAsyncCancelTrigger().GetCancellationTokenOnDestroy();
+#endif
         }
 #endif
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
         private static CancellationToken GetCancellationTokenOnDestroy;
 #endif
 #if !UNITY_EDITOR
@@ -118,7 +120,7 @@ namespace AIO
                 name = nameof(RunnerMainRuntime)
             };
             instance = RunnerMainRuntime.AddComponent<ThreadMono>();
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
             GetCancellationTokenOnDestroy = instance.GetCancellationTokenOnDestroy();
 #endif
             Application.quitting += Dispose;

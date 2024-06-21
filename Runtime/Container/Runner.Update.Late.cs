@@ -1,5 +1,6 @@
 ﻿#region namespace
 
+using System;
 using System.Collections;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace AIO
     partial class Runner
     {
         #region Nested type: ThreadMono
+
+        public static event Action OnLateUpdate;
 
         private partial class ThreadMono
         {
@@ -32,6 +35,7 @@ namespace AIO
 
             public void LateUpdate()
             {
+                OnLateUpdate?.Invoke();
                 if (QueuesDelegateUpdateFixedState) return;      //判断当前是否有操作正在执行
                 if (QueuesDelegateUpdateLate.Count == 0) return; //清空队列中 残留的操作函数
                 QueuesDelegateUpdateFixedState = true;           //并开启执行状态

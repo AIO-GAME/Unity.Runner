@@ -105,7 +105,7 @@ namespace AIO
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
                 item.Behaviour = null;
                 item.State     = 0;
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
                 item.Source = CancellationTokenSource.CreateLinkedTokenSource(GetCancellationTokenOnDestroy);
 #else
                 item.Source = new CancellationTokenSource();
@@ -118,7 +118,7 @@ namespace AIO
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
                 item.State     = 0;
                 item.Behaviour = null;
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
                 item.Source = CancellationTokenSource.CreateLinkedTokenSource(sources.Add(GetCancellationTokenOnDestroy));
 #else
                 item.Source = CancellationTokenSource.CreateLinkedTokenSource(sources);
@@ -131,7 +131,7 @@ namespace AIO
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
                 item.State     = 0;
                 item.Behaviour = null;
-#if SUPPORT_UNITASK
+#if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
                 item.Source = CancellationTokenSource.CreateLinkedTokenSource(new[] { sources.Token, GetCancellationTokenOnDestroy });
 #else
                 item.Source = sources;
