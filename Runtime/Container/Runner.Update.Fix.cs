@@ -14,6 +14,8 @@ namespace AIO
     {
         #region Nested type: ThreadMono
 
+        public static event Action OnFixedUpdate;
+
         partial class ThreadMono
         {
             private bool mIsUpdateFixedExe;
@@ -33,6 +35,7 @@ namespace AIO
 
             public void FixedUpdate()
             {
+                OnFixedUpdate?.Invoke();
                 if (QueuesDelegateUpdateLateState) return;        //判断当前是否有操作正在执行
                 if (QueuesDelegateUpdateFixed.Count == 0) return; //清空队列中 残留的操作函数
                 QueuesDelegateUpdateLateState = true;             //并开启执行状态

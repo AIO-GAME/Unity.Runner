@@ -1,5 +1,6 @@
 ﻿#region namespace
 
+using System;
 using System.Collections;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace AIO
     partial class Runner
     {
         #region Nested type: ThreadMono
+
+        public static event Action OnUpdate;
 
         partial class ThreadMono
         {
@@ -44,6 +47,7 @@ namespace AIO
 
             public void Update()
             {
+                OnUpdate?.Invoke();
                 if (!QueuesCoroutineState && !QueuesCoroutine.IsEmpty) UpdateCoroutine();
                 if (!QueuesDelegateUpdateState && !QueuesDelegateUpdate.IsEmpty) UpdateQueue();
                 if (!mIsUpdateExe && !QueueCopiedUpdate.IsEmpty)
