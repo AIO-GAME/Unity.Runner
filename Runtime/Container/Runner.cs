@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
-using Cysharp.Threading.Tasks.Triggers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -12,6 +11,7 @@ using UObject = UnityEngine.Object;
 #if SUPPORT_UNITASK && UNITY_2020_1_OR_NEWER
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 #endif
 
 #endregion
