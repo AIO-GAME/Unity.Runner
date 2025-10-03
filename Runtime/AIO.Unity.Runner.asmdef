@@ -1,21 +1,21 @@
 {
-  "name": "AIO.Unity.Runner",
+  "noEngineReferences": false,
+  "defineConstraints": [],
+  "autoReferenced": true,
   "references": [
     "UniTask"
   ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": true,
   "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
   "versionDefines": [
-	{
-	  "name": "com.cysharp.unitask",
-	  "expression": "",
-	  "define": "SUPPORT_UNITASK"
-	}
+    {
+      "name": "com.cysharp.unitask",
+      "expression": "",
+      "define": "SUPPORT_UNITASK"
+    }
   ],
-  "noEngineReferences": false
+  "allowUnsafeCode": true,
+  "includePlatforms": [],
+  "name": "AIO.Unity.Runner",
+  "excludePlatforms": [],
+  "precompiledReferences": []
 }
