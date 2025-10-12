@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
 #endregion
@@ -14,7 +15,7 @@ namespace AIO
 {
     partial class Runner
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStartCoroutine(IEnumerator coroutine)
         {
 #if UNITY_EDITOR
@@ -26,7 +27,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStartCoroutine(IEnumerable<IEnumerator> coroutines)
         {
 #if UNITY_EDITOR
@@ -43,7 +44,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStopCoroutine(IEnumerator coroutine)
         {
 #if UNITY_EDITOR
@@ -57,7 +58,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStopCoroutine(IEnumerable<IEnumerator> coroutines)
         {
 #if UNITY_EDITOR
@@ -74,7 +75,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStartCoroutine(MonoBehaviour behaviour, IEnumerator coroutine)
         {
 #if UNITY_EDITOR
@@ -86,7 +87,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStartCoroutine(MonoBehaviour behaviour, IEnumerable<IEnumerator> coroutines)
         {
 #if UNITY_EDITOR
@@ -103,16 +104,14 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStopCoroutine(Object behaviour, IEnumerator coroutine)
         {
 #if UNITY_EDITOR
             if (IsRuntime)
             {
 #endif
-                foreach (var data in QueuesCoroutine
-                                     .Where(data => behaviour == data.Value.Behaviour)
-                                     .Where(data => Equals(data.Key, coroutine))
+                foreach (var data in QueuesCoroutine.Where(data => behaviour == data.Value.Behaviour).Where(data => Equals(data.Key, coroutine))
                         ) data.Value.Cancel();
 #if UNITY_EDITOR
             }
@@ -120,7 +119,7 @@ namespace AIO
 #endif
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)] [Preserve]
         private static void SafeStopCoroutine(Object behaviour)
         {
             foreach (var data in QueuesCoroutine.Values.Where(data => behaviour == data.Behaviour))

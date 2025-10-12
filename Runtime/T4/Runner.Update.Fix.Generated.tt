@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -25,6 +26,7 @@ namespace AIO
         #region Delegation
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(Delegate[] agrs)
         {
             switch (agrs.Length)
@@ -41,6 +43,7 @@ namespace AIO
         }
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(Delegate agr)
         {
             if (agr is null) throw new ArgumentNullException(nameof(agr));
@@ -55,6 +58,7 @@ namespace AIO
 #>
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(<#= types #>)
         {
 <#
@@ -77,6 +81,7 @@ namespace AIO
         #region Action
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(Action arg)
         {
             if (arg is null) throw new ArgumentNullException(nameof(arg));
@@ -85,6 +90,7 @@ namespace AIO
         }
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(ICollection<Action> args)
         {
             if (args is null) throw new ArgumentNullException(nameof(args));
@@ -100,6 +106,7 @@ namespace AIO
 #>
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#>(<#= actionTypes #>)
         {
 <#
@@ -129,6 +136,7 @@ namespace AIO
 #>
 
         <#=summaryParams#>
+        [Preserve]
         public static void <#=actionName#><<#= genericTypes #>>(Action<<#= genericTypes #>> action, <#= paramsStr #>)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));

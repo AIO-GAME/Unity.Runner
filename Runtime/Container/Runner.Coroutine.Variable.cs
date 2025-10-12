@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 #endregion
 
@@ -15,12 +16,14 @@ namespace AIO
         /// 等待一帧
         /// </summary>
         /// <remarks>公共Coroutine变量</remarks>
+        [Preserve]
         public static readonly WaitForEndOfFrame WaitForEndOfFrame = new WaitForEndOfFrame();
 
         /// <summary>
         /// 等待下一帧
         /// </summary>
         /// <remarks>公共Coroutine变量</remarks>
+        [Preserve]
         public static readonly WaitForFixedUpdate WaitForFixedUpdate = new WaitForFixedUpdate();
 
         private static readonly Dictionary<float, WaitForSeconds>         waitForSeconds         = new Dictionary<float, WaitForSeconds>(32);
@@ -28,6 +31,7 @@ namespace AIO
         private static readonly Dictionary<Func<bool>, WaitUntil>         waitUntil              = new Dictionary<Func<bool>, WaitUntil>(32);
         private static readonly Dictionary<Func<bool>, WaitWhile>         waitWhile              = new Dictionary<Func<bool>, WaitWhile>(32);
 
+        [Preserve]
         private class YieldReturnNull : IEnumerator
         {
             public object Current    => null;
@@ -38,11 +42,13 @@ namespace AIO
         /// <summary>
         /// 空的协程变量
         /// </summary>
+        [Preserve]
         public static readonly IEnumerator YieldReturn = new YieldReturnNull();
 
         /// <summary>
         /// 获取协程变量
         /// </summary>
+        [Preserve]
         public static WaitForSeconds WaitForSeconds(float k)
         {
             if (!waitForSeconds.TryGetValue(k, out var tmp))
@@ -55,6 +61,7 @@ namespace AIO
         /// </summary>
         /// <param name="k"> 等待时间 </param>
         /// <returns> 返回协程变量 </returns>
+        [Preserve]
         public static WaitForSecondsRealtime WaitForSecondsRealtime(float k)
         {
             if (!waitForSecondsRealtime.TryGetValue(k, out var tmp))
@@ -65,6 +72,7 @@ namespace AIO
         /// <summary>
         /// 等待直到条件为真
         /// </summary>
+        [Preserve]
         public static WaitUntil WaitUntil(Func<bool> k)
         {
             if (!waitUntil.TryGetValue(k, out var tmp))
@@ -75,6 +83,7 @@ namespace AIO
         /// <summary>
         /// 等待直到条件为假
         /// </summary>
+        [Preserve]
         public static WaitWhile WaitWhile(Func<bool> k)
         {
             if (!waitWhile.TryGetValue(k, out var tmp))
@@ -85,41 +94,49 @@ namespace AIO
         /// <summary>
         /// 删除协程变量
         /// </summary>
+        [Preserve]
         public static void WaitForSecondsDelete(float k) { waitForSeconds.Remove(k); }
 
         /// <summary>
         /// 删除协程变量
         /// </summary>
+        [Preserve]
         public static void WaitForSecondsRealtimeDelete(float k) { waitForSecondsRealtime.Remove(k); }
 
         /// <summary>
         /// 删除协程变量
         /// </summary>
+        [Preserve]
         public static void WaitUntilDelete(Func<bool> k) { waitUntil.Remove(k); }
 
         /// <summary>
         /// 删除协程变量
         /// </summary>
+        [Preserve]
         public static void WaitWhileDelete(Func<bool> k) { waitWhile.Remove(k); }
 
         /// <summary>
         /// 清空协程变量
         /// </summary>
+        [Preserve]
         public static void WaitForSecondsClear() { waitForSeconds.Clear(); }
 
         /// <summary>
         /// 清空协程变量
         /// </summary>
+        [Preserve]
         public static void WaitForSecondsRealtimeClear() { waitForSecondsRealtime.Clear(); }
 
         /// <summary>
         /// 清空协程变量
         /// </summary>
+        [Preserve]
         public static void WaitUntilClear() { waitUntil.Clear(); }
 
         /// <summary>
         /// 清空协程变量
         /// </summary>
+        [Preserve]
         public static void WaitWhileClear() { waitWhile.Clear(); }
     }
 }

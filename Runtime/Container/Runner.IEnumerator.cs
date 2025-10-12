@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Scripting;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
 #endif
@@ -16,19 +17,25 @@ namespace AIO
 {
     partial class Runner
     {
+        [Preserve]
         private class CoroutineData
         {
             /// <c>0:未开始</c><c>1:开始</c><c>2:结束</c>
             public int State { get; private set; }
 
+            [Preserve]
             private CancellationTokenSource Source { get; set; }
 
+            [Preserve]
             private CoroutineData() { State = 0; }
 
+            [Preserve]
             public void Cancel() { Source.Cancel(); }
 
+            [Preserve]
             private IEnumerator current;
 
+            [Preserve]
             private void Finish()
             {
                 QueuesCoroutine.TryRemove(current, out _);
@@ -38,8 +45,10 @@ namespace AIO
                 Free.Enqueue(this);
             }
 
+            [Preserve]
             public MonoBehaviour Behaviour { get; private set; }
 
+            [Preserve]
             public void Start(IEnumerator enumerator)
             {
                 State   = 1;
@@ -48,6 +57,7 @@ namespace AIO
                 else instance.StartCoroutine(RunCoroutine());
             }
 
+            [Preserve]
             private IEnumerator RunCoroutine()
             {
                 while (!Source.IsCancellationRequested)
@@ -59,8 +69,10 @@ namespace AIO
                 Finish();
             }
 
+            [Preserve]
             private static ConcurrentQueue<CoroutineData> Free { get; } = new ConcurrentQueue<CoroutineData>();
 
+            [Preserve]
             public static CoroutineData Create(MonoBehaviour behaviour)
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -74,6 +86,7 @@ namespace AIO
                 return item;
             }
 
+            [Preserve]
             public static CoroutineData Create(MonoBehaviour behaviour, CancellationTokenSource sources)
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -87,6 +100,7 @@ namespace AIO
                 return item;
             }
 
+            [Preserve]
             public static CoroutineData Create(MonoBehaviour behaviour, params CancellationToken[] sources)
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -100,6 +114,7 @@ namespace AIO
                 return item;
             }
 
+            [Preserve]
             public static CoroutineData Create()
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -113,6 +128,7 @@ namespace AIO
                 return item;
             }
 
+            [Preserve]
             public static CoroutineData Create(params CancellationToken[] sources)
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -126,6 +142,7 @@ namespace AIO
                 return item;
             }
 
+            [Preserve]
             public static CoroutineData Create(CancellationTokenSource sources)
             {
                 if (!Free.TryDequeue(out var item)) item = new CoroutineData();
@@ -142,12 +159,13 @@ namespace AIO
 
         #region 协程
 
-        [ContextStatic]
+        [ContextStatic] [Preserve]
         private static readonly ConcurrentDictionary<IEnumerator, CoroutineData> QueuesCoroutine = new ConcurrentDictionary<IEnumerator, CoroutineData>();
 
-        [ContextStatic]
+        [ContextStatic] [Preserve]
         private static bool QueuesCoroutineState;
 
+        [Preserve]
         private static void UpdateCoroutine()
         {
             QueuesCoroutineState = true;
@@ -163,11 +181,13 @@ namespace AIO
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static bool PushUpdate(IEnumerator coroutine) => QueuesCoroutine.TryAdd(coroutine, CoroutineData.Create());
 
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static bool PushUpdate(IEnumerator coroutine, params CancellationToken[] sources) =>
             QueuesCoroutine.TryAdd(coroutine, CoroutineData.Create(sources));
 

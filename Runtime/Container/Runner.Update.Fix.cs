@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using UnityEngine.Scripting;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
 #endif
@@ -14,6 +15,7 @@ namespace AIO
     {
         #region Nested type: ThreadMono
 
+        [Preserve]
         public static event Action OnFixedUpdate;
 
         partial class ThreadMono

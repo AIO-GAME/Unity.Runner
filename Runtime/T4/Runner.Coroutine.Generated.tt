@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -35,6 +36,7 @@ namespace AIO
     }
 #>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static void StartCoroutine<#= T #>(Action<#= T #> action<#= string.Concat((i > 0 ? ", " : "" ), parameters)#>) { SafeStartCoroutine(ActionAsync.Create(action<#= string.Concat((i > 0 ? ", " : "" ), arguments)#>)); }
 <#
     }
@@ -58,6 +60,7 @@ namespace AIO
         }
 #>
         /// <param name="func">The function to be invoked.</param>
+        [Preserve]
         public static void StartCoroutine<#= i >= 1 ? $"<{T}>" : "" #>(Func<<#= T + (i > 0 ? ", " : "") #>IEnumerator> func<#= string.Concat((i > 0 ? ", " : "" ), parameters)#>) { SafeStartCoroutine(func.Invoke(<#= arguments #>)); }
 <#
     }

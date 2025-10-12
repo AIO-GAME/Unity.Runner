@@ -10,6 +10,7 @@
 #>
 using System;
 using System.Collections;
+using UnityEngine.Scripting;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
 #else
@@ -38,6 +39,7 @@ namespace AIO
         }
 #>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<#= T #>(Action<#= T #> action<#= string.Concat((i > 0 ? ", " : ""), parameters) #>)
         {
             if (IsAllowThread)
@@ -70,6 +72,7 @@ namespace AIO
         /// <summary>
         /// Starts a task on a thread pool or the main thread.
         /// </summary>
+        [Preserve]
         public static async void StartTask(IEnumerator action)
         {
             if (IsAllowThread)

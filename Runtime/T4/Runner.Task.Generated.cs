@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using UnityEngine.Scripting;
 #if SUPPORT_UNITASK
 using Cysharp.Threading.Tasks;
 #else
@@ -15,6 +16,7 @@ namespace AIO
         /// Starts a task on a thread pool or the main thread.
         /// </summary>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask(Action action)
         {
             if (IsAllowThread)
@@ -36,6 +38,7 @@ namespace AIO
         /// </summary>
         /// <typeparam name="T1">The type of the 1th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1>(Action<T1> action, T1 t1)
         {
             if (IsAllowThread)
@@ -60,6 +63,7 @@ namespace AIO
         /// <typeparam name="T1">The type of the 1th parameter.</typeparam>
         /// <typeparam name="T2">The type of the 2th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2>(Action<T1, T2> action, T1 t1, T2 t2)
         {
             if (IsAllowThread)
@@ -85,6 +89,7 @@ namespace AIO
         /// <typeparam name="T2">The type of the 2th parameter.</typeparam>
         /// <typeparam name="T3">The type of the 3th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3>(Action<T1, T2, T3> action, T1 t1, T2 t2, T3 t3)
         {
             if (IsAllowThread)
@@ -111,6 +116,7 @@ namespace AIO
         /// <typeparam name="T3">The type of the 3th parameter.</typeparam>
         /// <typeparam name="T4">The type of the 4th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4>(Action<T1, T2, T3, T4> action, T1 t1, T2 t2, T3 t3, T4 t4)
         {
             if (IsAllowThread)
@@ -138,6 +144,7 @@ namespace AIO
         /// <typeparam name="T4">The type of the 4th parameter.</typeparam>
         /// <typeparam name="T5">The type of the 5th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5)
         {
             if (IsAllowThread)
@@ -166,6 +173,7 @@ namespace AIO
         /// <typeparam name="T5">The type of the 5th parameter.</typeparam>
         /// <typeparam name="T6">The type of the 6th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6)
         {
             if (IsAllowThread)
@@ -195,6 +203,7 @@ namespace AIO
         /// <typeparam name="T6">The type of the 6th parameter.</typeparam>
         /// <typeparam name="T7">The type of the 7th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7)
         {
             if (IsAllowThread)
@@ -225,6 +234,7 @@ namespace AIO
         /// <typeparam name="T7">The type of the 7th parameter.</typeparam>
         /// <typeparam name="T8">The type of the 8th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4, T5, T6, T7, T8>(Action<T1, T2, T3, T4, T5, T6, T7, T8> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8)
         {
             if (IsAllowThread)
@@ -256,6 +266,7 @@ namespace AIO
         /// <typeparam name="T8">The type of the 8th parameter.</typeparam>
         /// <typeparam name="T9">The type of the 9th parameter.</typeparam>
         /// <param name="action">The coroutine to start.</param>
+        [Preserve]
         public static async void StartTask<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9)
         {
             if (IsAllowThread)
@@ -278,6 +289,7 @@ namespace AIO
         /// <summary>
         /// Starts a task on a thread pool or the main thread.
         /// </summary>
+        [Preserve]
         public static async void StartTask(IEnumerator action)
         {
             if (IsAllowThread)

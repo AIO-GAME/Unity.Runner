@@ -127,6 +127,7 @@ namespace AIO
         }
 #endif
 
+        [Preserve]
         private static void Dispose()
         {
 #if UNITY_EDITOR
@@ -139,6 +140,7 @@ namespace AIO
             instance = null;
         }
 
+        [Preserve]
         private static void DataInitialize()
         {
             if (QueuesDelegateUpdate == null) QueuesDelegateUpdate           = new ConcurrentQueue<Delegate>();
@@ -149,17 +151,18 @@ namespace AIO
         /// <summary>
         /// 是否允许线程
         /// </summary>
+        [Preserve]
         public static bool IsAllowThread { get; private set; }
 
-        [ContextStatic] private static GameObject                RunnerMainRuntime;
-        [ContextStatic] private static ThreadMono                instance;
-        [ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdateFixed;
-        [ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdate;
-        [ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdateLate;
+        [Preserve, ContextStatic] private static GameObject                RunnerMainRuntime;
+        [Preserve, ContextStatic] private static ThreadMono                instance;
+        [Preserve, ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdateFixed;
+        [Preserve, ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdate;
+        [Preserve, ContextStatic] private static ConcurrentQueue<Delegate> QueuesDelegateUpdateLate;
 
-        [ContextStatic] private static volatile bool QueuesDelegateUpdateFixedState = true;
-        [ContextStatic] private static volatile bool QueuesDelegateUpdateState      = true;
-        [ContextStatic] private static volatile bool QueuesDelegateUpdateLateState  = true;
+        [Preserve, ContextStatic] private static volatile bool QueuesDelegateUpdateFixedState = true;
+        [Preserve, ContextStatic] private static volatile bool QueuesDelegateUpdateState      = true;
+        [Preserve, ContextStatic] private static volatile bool QueuesDelegateUpdateLateState  = true;
 
         [Preserve]
         private partial class ThreadMono : MonoBehaviour

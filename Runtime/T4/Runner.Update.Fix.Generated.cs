@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace AIO
 {
@@ -11,6 +12,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Delegate[] agrs)
         {
             switch (agrs.Length)
@@ -29,6 +31,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Delegate agr)
         {
             if (agr is null) throw new ArgumentNullException(nameof(agr));
@@ -39,6 +42,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Delegate agr1, Delegate agr2)
         {
             Debug.Assert(agr1 != null, nameof(agr1));
@@ -50,6 +54,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Delegate agr1, Delegate agr2, Delegate agr3)
         {
             Debug.Assert(agr1 != null, nameof(agr1));
@@ -66,6 +71,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Action arg)
         {
             if (arg is null) throw new ArgumentNullException(nameof(arg));
@@ -76,6 +82,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(ICollection<Action> args)
         {
             if (args is null) throw new ArgumentNullException(nameof(args));
@@ -87,6 +94,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Action agr1, Action agr2)
         {
             Debug.Assert(agr1 != null, nameof(agr1));
@@ -98,6 +106,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix(Action agr1, Action agr2, Action agr3)
         {
             Debug.Assert(agr1 != null, nameof(agr1));
@@ -114,6 +123,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1>(Action<T1> action, T1 param1)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -126,6 +136,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2>(Action<T1, T2> action, T1 param1, T2 param2)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -138,6 +149,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3>(Action<T1, T2, T3> action, T1 param1, T2 param2, T3 param3)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -150,6 +162,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4>(Action<T1, T2, T3, T4> action, T1 param1, T2 param2, T3 param3, T4 param4)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -162,6 +175,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> action, T1 param1, T2 param2, T3 param3, T4 param4, T5 param5)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -174,6 +188,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> action, T1 param1, T2 param2, T3 param3, T4 param4, T5 param5, T6 param6)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -186,6 +201,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> action, T1 param1, T2 param2, T3 param3, T4 param4, T5 param5, T6 param6, T7 param7)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -198,6 +214,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4, T5, T6, T7, T8>(Action<T1, T2, T3, T4, T5, T6, T7, T8> action, T1 param1, T2 param2, T3 param3, T4 param4, T5 param5, T6 param6, T7 param7, T8 param8)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));
@@ -210,6 +227,7 @@ namespace AIO
         /// <summary>
         /// Pushes the specified update action to the update fix queue.
         /// </summary>
+        [Preserve]
         public static void PushUpdateFix<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, T1 param1, T2 param2, T3 param3, T4 param4, T5 param5, T6 param6, T7 param7, T8 param8, T9 param9)
         {
             if (action is null) throw new ArgumentNullException(nameof(action));

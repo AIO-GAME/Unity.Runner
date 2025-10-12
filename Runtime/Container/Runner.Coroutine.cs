@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 #endregion
 
@@ -16,26 +17,31 @@ namespace AIO
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(IEnumerator coroutine) { SafeStartCoroutine(coroutine); }
 
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(MonoBehaviour behaviour, IEnumerator coroutine) { SafeStartCoroutine(behaviour, coroutine); }
 
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(MonoBehaviour behaviour, Func<IEnumerator> coroutine) { SafeStartCoroutine(behaviour, coroutine.Invoke()); }
 
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(params IEnumerator[] coroutines) { SafeStartCoroutine(coroutines); }
 
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(params Func<IEnumerator>[] coroutines)
         {
             foreach (var func in coroutines) SafeStartCoroutine(func.Invoke());
@@ -44,6 +50,7 @@ namespace AIO
         /// <summary>
         /// 执行协程
         /// </summary>
+        [Preserve]
         public static void StartCoroutine(MonoBehaviour behaviour, params Func<IEnumerator>[] coroutines)
         {
             foreach (var func in coroutines) SafeStartCoroutine(behaviour, func.Invoke());
@@ -56,21 +63,25 @@ namespace AIO
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(MonoBehaviour behaviour) { SafeStopCoroutine(behaviour); }
 
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(MonoBehaviour behaviour, IEnumerator coroutine) { SafeStopCoroutine(behaviour, coroutine); }
 
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(IEnumerator coroutine) { SafeStopCoroutine(coroutine); }
 
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(IEnumerator coroutine, params IEnumerator[] coroutines)
         {
             SafeStopCoroutine(coroutine);
@@ -80,16 +91,19 @@ namespace AIO
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(IEnumerable<IEnumerator> coroutines) { SafeStopCoroutine(coroutines); }
 
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(Func<IEnumerator> coroutine) { SafeStopCoroutine(coroutine.Invoke()); }
 
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(in Func<IEnumerator> coroutine, params Func<IEnumerator>[] coroutines)
         {
             SafeStopCoroutine(coroutine?.Invoke());
@@ -99,6 +113,7 @@ namespace AIO
         /// <summary>
         /// 结束协程
         /// </summary>
+        [Preserve]
         public static void StopCoroutine(in ICollection<Func<IEnumerator>> coroutines)
         {
             if (coroutines.Count == 0) return;
@@ -108,6 +123,7 @@ namespace AIO
         /// <summary>
         /// 结束全部协程
         /// </summary>
+        [Preserve]
         public static void StopAllCoroutines()
         {
             instance.StopAllCoroutines();
